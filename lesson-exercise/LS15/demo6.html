@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function MyObj(){}
+       
+    MyObj.prototype.z=3;
+
+    var obj=new MyObj();
+    obj.x=1;
+    obj.y=2;
+    
+    // console.log(obj.x);
+    // console.log(obj.y);
+    // console.log(obj.z);
+
+    // console.log("z"in obj);
+    // console.log(obj.hasOwnProperty("z"));
+
+    obj.z = 5;
+
+    obj.hasOwnProperty("z");
+    console.log(obj.z); //5
+    console.log(MyObj.prototype.z); //3
+
+    obj.z = 8;
+    console.log(obj.z);//8
+
+    delete obj.z;//true
+    console.log(obj.z);//3
+
+    delete obj.z;//true
+    console.log(obj.z);//still 3
+
+    //彻底删除原型链上的属性
+    delete obj.__proto__.z;//或者delete MyObj.prototype.z;
+    console.log(obj.z);//此时彻底没有z了
+
+</script>
+</html>

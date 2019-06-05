@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //Part1 方法中函数嵌套 this缺陷
+    //对象 point方法中嵌套的方法被当做一般方法，
+    //故里面的this指代全局对象window。
+    var point ={
+        x:0,
+        y:0,
+        moveTo:function(x,y){
+            //内部嵌套函数
+            function moveToX(){
+                this.x=x; 
+            }
+            //内部嵌套函数
+            function moveToY(){
+                this.y=y;
+            }
+            moveToX(); //通过间接调用来解决
+            moveToY();
+        }
+    };
+    point.moveTo(2,2);
+    console.log(point); //0,0
+    console.log(window.x,window.y); //2,2
+
+    //Part2 方法中函数嵌套this缺陷 解决办法
+    //方案一：软绑定
+    var point ={
+        x:0,
+        y:0,
+        moveTo:function(x,y){
+            var that =this; //关键的一行，软绑定
+            //内部嵌套函数
+            function moveToX(){
+                that.x=x;
+            }
+            //内部嵌套函数
+            function moveToY(){
+                that.y=y;
+            }
+            moveToX();
+            moveToY();
+        }
+    };
+    point.moveTo(2,2);
+    console.log(point);
+    console.log(window.x,window.y);
+    
+    //解决方案二：通过call和apply 来解决
+    var point = {
+    x:0,y:0,
+    moveTo:function (x,y) {
+        function moveToX() {
+            this.x = x;
+        }
+        function moveToY() {
+            this.y = y;
+        }
+        moveToX.call(this);//->this.moveToX()->point.MoveToX()
+        moveToY();
+    }
+    };
+    point.moveTo(2,2);console.log(point);//2,0
+
+    //解决方案三：通过bind来解决，硬绑定
+    var point = {
+        x:0,y:0,
+        moveTo:function (x,y) {
+            function moveToX() {
+                this.x = x;
+            }
+            function moveToY() {
+                this.y = y;
+            }
+            moveToX.bind(point)();
+            moveToY.bind(point)();
+        }
+    };
+    point.moveTo(2,2);
+    console.log(point);
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function thisTest(){
+        console.log(this === window); //true
+    }
+    thisTest();
+
+    var a=10,b="Hi";
+
+    function thisTest2(){
+        this.a =20;
+        //delete 用来删除js对象的属性，不能删除任何变量（全局、局部、原型链中的变量）
+        delete this.b;
+        this.c="新添加属性";
+    }
+    thisTest2();
+    
+    console.log(a,c);  //20，“新添加属性”
+    console.log(b);    //Hi
+    
+    var point ={
+        x:0,
+        y:0,
+        moveTo:function(x,y){
+            function moveToX(x){
+                this.x=x;
+            };
+            function moveToY(y)
+            {
+                this.y=y;
+            }
+            moveToX(x);
+            moveToY(y);
+        }
+    };
+    point.moveTo(10,10);
+    console.log(point.x,point.y); //0,0??
+
+
+</script>
+</html>

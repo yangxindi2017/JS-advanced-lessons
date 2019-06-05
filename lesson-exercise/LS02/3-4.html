@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+
+    <script >
+        // var num1=20;
+        // //toFixed(h)；保留特定位数的小数
+        // //超出特定位数的四舍五入，返回值类型为字符串
+        // num1.toFixed(2);
+
+        var num1=20;
+        var numobject=new Number(num1);
+        console.log(numobject.__proto__==Number.prototype);//__两个下划线
+        numobject.toFixed();
+
+        var num2=12345.789;
+        num2.toPrecision(1);//1e+4 表示1的4次方
+        //数字位个数小于数字的整数位时，用指数的形式表示出来，大于或等于时，直接四舍五入截取。
+
+        //fromCharCode(97,98,99);
+        //将指定数字变为Unicode编码
+        string.fromCharCode(97,98,99);
+
+        //charCodeAt();将指定索引位置的字符转换为UUnicode码输出。
+        var string ="acvfbbgbre";
+        string.charCodeAt(0);
+
+        //slice(截取的起始位置，截取的结束位置)不包含结束位置上的字符
+        //如果截取的结束位置小于0，实际结果为 str.length+截取结束位置。
+        str.slice(0,-1);//!!
+
+        //substr(截取的起始位置，截取的长度)
+        //截取长度可以缺省，表示从起始位置到字符串结束
+        str.substr();
+
+        //substring（截取起始位置，截取的结束位置）注意和substring 的区别
+        //如果截取的起始位置>截取的结束位置，两者会互换位置。
+        //超出 0~str.length长度范围的，会被截断。
+        str.substring(0,-1);
+        
+        //split(分割符，限定生成数组的长度)
+        str.split("*",2);
+        str.split("");//一个字符一个元素
+        str.split();//空直接返回
+
+        //trim();去除字符串起始和末尾的空格
+        var str = "      ab  c   ";
+        str.trim();// "ab  c"
+
+        //concat()字符串拼接
+        var str1="abc";
+        str1.concat("def","ghi");
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
